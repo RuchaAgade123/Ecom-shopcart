@@ -28,7 +28,8 @@ OS: win32 x64
 #################################
 
 ## Post above configuration: 
-# run
+
+execute
 
 ng add @angular/cdk
 
