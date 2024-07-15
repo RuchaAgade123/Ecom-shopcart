@@ -1,0 +1,8 @@
+<!-- login.component.html -->
+<form (ngSubmit)="login()">
+    <input matInput type="email" [(ngModel)]="email" name="email" [required]="true">
+    <input matInput type="password" [(ngModel)]="password" name="password" [required]="true">
+    <button mat-raised-button type="submit" color="primary">Login</button>
+  </form>
+  
+  
