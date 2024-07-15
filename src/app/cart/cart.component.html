@@ -1,6 +1,6 @@
 <!-- cart.component.html -->
 <div class="container">
-    <div class="cart-items">
+    <div class ="cart-items" *ngIf="cartItems.length!=0">
       <div *ngFor="let item of cartItems" class="cart-item">
         <p>{{ item.product.title }}</p>
         <p>Quantity: {{ item.quantity }}</p>

@@ -4,7 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-
+import { CartService } from '../services/cart.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -15,13 +15,14 @@ export class ProductListComponent implements OnInit {
   products: any[] = [];
   categories: string[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit() {
 
 
     this.productService.getProducts().subscribe(products => {
       this.products = products;
+      console.log(this.products)
     });
 
     this.productService.getCategories().subscribe(categories => {
@@ -36,7 +37,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(productId: number) {
-    this.productService.addToCart(productId).subscribe(() => {
+    this.cartService.addToCart(productId).subscribe(() => {
       console.log(`Product ${productId} added to cart.`);
       // Optionally, you can notify the user or update the UI
     }, error => {

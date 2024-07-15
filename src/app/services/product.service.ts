@@ -14,7 +14,6 @@ export class ProductService {
 
 
   private apiUrl = 'https://fakestoreapi.com/products';
-  private cartUrl = 'https://fakestoreapi.com/carts';
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +29,4 @@ export class ProductService {
     return this.http.get<any[]>(`${this.apiUrl}/category/${category}`);
   }
 
-  addToCart(productId: number) {
-    return this.http.post<any>(`${this.cartUrl}`, { productId });
-  }
 }
