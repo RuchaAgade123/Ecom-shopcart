@@ -2,27 +2,22 @@
 Following are my configurations on PC
 
 node -v
+
 v14.21.3
 
 npm -v
+
 6.14.18
 
 ng v
+
 Angular CLI: 14.1.3
+
 Node: 14.21.3
+
 Package Manager: npm 6.14.18
+
 OS: win32 x64
-
-Angular:
-...
-
-Package                      Version
-------------------------------------------------------
-@angular-devkit/architect    0.1401.3 (cli-only)
-@angular-devkit/core         14.1.3 (cli-only)
-@angular-devkit/schematics   14.1.3 (cli-only)
-@schematics/angular          14.1.3 (cli-only)
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
 
 
 ## Post above configuration: 
