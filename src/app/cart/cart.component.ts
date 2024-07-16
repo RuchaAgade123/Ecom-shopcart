@@ -9,23 +9,36 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
 
   cartItems: any[] = [];
+  subtotal: number = 0;
+  tax: number = 3;
+  total: number = 0;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cartService.getCartItems().subscribe(items => {
       this.cartItems = items;
-      console.log(items);
+      this.calculateTotals();
     });
   }
 
   updateQuantity(cartItemId: number, quantity: number) {
     if (quantity > 0) {
-      this.cartService.updateCartItem(cartItemId, quantity);
+      this.cartService.updateCartItem(cartItemId, quantity).subscribe(() => {
+        this.calculateTotals();
+      });
     }
   }
 
   removeItem(cartItemId: number) {
-    this.cartService.removeCartItem(cartItemId);
+    this.cartService.removeCartItem(cartItemId).subscribe(() => {
+      this.cartItems = this.cartItems.filter(item => item.product.id !== cartItemId);
+      this.calculateTotals();
+    });
+  }
+
+  private calculateTotals() {
+    this.subtotal = this.cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+    this.total = this.subtotal + this.tax;
   }
 }

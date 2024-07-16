@@ -45,7 +45,7 @@
 .mat-card-header img {
   width: 50%; /* Fill the header width */
   height: 50%; /* Fill the header height */
-  object-fit: cover; /* Ensure the image covers the container */
+  object-fit: contain; /* Ensure the image covers the container */
   border-radius: 0; /* Square shape */
   transition: transform 0.3s ease-in-out; /* Smooth transition for zoom */
   position: absolute; /* Absolute positioning */
@@ -67,7 +67,47 @@
   font-weight: bold;
 }
 
+.product-stock {
+  margin-top: 10px;
+  color: #4caf50; /* Green color for "In Stock" */
+  font-weight: bold;
+}
+
 .mat-card-actions {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: row; /* Ensure elements are in a row */
+  gap: 10px; /* Add space between elements */
+}
+
+.action-symbol {
+  font-size: 24px; /* Larger font size for symbols */
+  font-weight: bold;
+  color: #1976d2; /* Color for the symbols */
+  line-height: 0; /* Remove extra line spacing */
+}
+
+button.mat-icon-button {
+  margin: 0 5px; /* Add some space around the buttons */
+}
+
+/* Styling for the "In Stock" button */
+.in-stock-button {
+  border-radius: 50%; /* Circle shape */
+  padding: 10px 20px; /* Adjust padding */
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  font-weight: bold; /* Bold text */
+  text-transform: uppercase; /* Uppercase text */
+  font-size: 14px; /* Font size */
+  min-width: 100px; /* Minimum width for consistency */
+  height: 40px; /* Height to make it circular */
+  display: flex; /* Center text vertically */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+}
+
+.in-stock-button:hover {
+  background-color: #45a049; /* Darker green on hover */
 }

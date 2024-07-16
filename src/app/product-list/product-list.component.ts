@@ -16,17 +16,19 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService, private cartService: CartService) { }
 
   ngOnInit() {
+    // Fetch products once and store them
     this.productService.getProducts().subscribe(products => {
-      this.products = products.map(product => ({
-        ...product,
-        //price: this.getRandomPrice() // Add random price here
-      }));
+      this.products = products;
+      // Initialize with all products
+      this.filterByCategory('all');
     });
 
+    // Fetch categories
     this.productService.getCategories().subscribe(categories => {
       this.categories = categories;
     });
 
+    // Fetch cart items
     this.cartService.getCartItems().subscribe(items => {
       this.cartQuantities = items.reduce((acc, item) => {
         acc[item.product.id] = item.quantity;
@@ -37,18 +39,14 @@ export class ProductListComponent implements OnInit {
 
   filterByCategory(category: string) {
     if (category === 'all') {
+      // Show all products with their original prices
       this.productService.getProducts().subscribe(products => {
-        this.products = products.map(product => ({
-          ...product,
-          price: this.getRandomPrice() // Add random price here
-        }));
+        this.products = products;
       });
     } else {
+      // Show products filtered by category with their original prices
       this.productService.getProductsByCategory(category).subscribe(products => {
-        this.products = products.map(product => ({
-          ...product,
-          price: this.getRandomPrice() // Add random price here
-        }));
+        this.products = products;
       });
     }
   }
@@ -61,8 +59,10 @@ export class ProductListComponent implements OnInit {
   updateQuantity(product: any, quantity: number) {
     if (quantity > 0) {
       this.cartService.updateCartItem(product.id, quantity);
-      this.updateCartQuantities();
+    } else {
+      this.cartService.removeCartItem(product.id); // Remove the item if quantity is 0 or less
     }
+    this.updateCartQuantities();
   }
 
   private updateCartQuantities() {
@@ -72,10 +72,5 @@ export class ProductListComponent implements OnInit {
         return acc;
       }, {});
     });
-  }
-
-  // Function to generate random price between 10 and 100
-  private getRandomPrice(): number {
-    return Math.floor(Math.random() * (100 - 10 + 1) + 10);
   }
 }

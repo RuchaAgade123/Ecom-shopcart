@@ -19,18 +19,20 @@
           <p class="product-price">Price: ${{ product.price }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <ng-container *ngIf="cartQuantities[product.id]">
+          <ng-container *ngIf="cartQuantities[product.id]; else inStock">
             <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] + 1)">
-              <mat-icon>add</mat-icon>
+              <span class="action-symbol">+</span>
             </button>
             <span>{{ cartQuantities[product.id] }}</span>
             <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] - 1)">
-              <mat-icon>remove</mat-icon>
+              <span class="action-symbol">-</span>
             </button>
           </ng-container>
-          <ng-container *ngIf="!cartQuantities[product.id]">
-            <button mat-button color="primary" (click)="addToCart(product)">Add to Cart</button>
-          </ng-container>
+          <ng-template #inStock>
+            <button mat-button color="primary" (click)="addToCart(product)" class="in-stock-button">
+              In Stock
+            </button>
+          </ng-template>
         </mat-card-actions>
       </mat-card>
     </div>

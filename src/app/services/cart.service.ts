@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,18 +24,20 @@ export class CartService {
     this.cartItems.next(items);
   }
 
-  updateCartItem(cartItemId: number, quantity: number): void {
+  updateCartItem(cartItemId: number, quantity: number): Observable<void> {
     const items = this.cartItems.getValue();
     const itemIndex = items.findIndex(item => item.product.id === cartItemId);
     if (itemIndex !== -1) {
       items[itemIndex].quantity = quantity;
       this.cartItems.next(items);
     }
+    return of();
   }
 
-  removeCartItem(cartItemId: number): void {
+  removeCartItem(cartItemId: number): Observable<void> {
     const items = this.cartItems.getValue();
     const filteredItems = items.filter(item => item.product.id !== cartItemId);
     this.cartItems.next(filteredItems);
+    return of();
   }
 }
