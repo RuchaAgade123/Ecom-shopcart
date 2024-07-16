@@ -8,6 +8,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,14 @@ export class AuthService {
         localStorage.setItem('token', response.token);
       })
     );
+  }
+
+  resetPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/reset-password`, { email });
+  }
+  
+  signup(username: string, email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users`, { username, email, password });
   }
 
   getToken() {

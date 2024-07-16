@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     LoginComponent,
     ProductListComponent,
-    CartComponent
+    CartComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

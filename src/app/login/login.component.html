@@ -1,17 +1,27 @@
-<form (ngSubmit)="login()" class="login-form">
-  <mat-label>Email</mat-label>
-  <input matInput type="email" [(ngModel)]="email" name="email" [required]="true">
-  
-  <mat-label>Password</mat-label>
-  <input matInput type="password" [(ngModel)]="password" name="password" [required]="true">
+<div *ngIf="!resetPasswordMode">
+  <form (ngSubmit)="login()" class="login-form">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" [(ngModel)]="email" name="email" [required]="true">
 
-  <div class="forgot-password">
-    <a href="/forgot-password">Forgot password?</a>
-  </div>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="password" name="password" [required]="true">
 
-  <button mat-raised-button type="submit" color="primary">Login</button>
+    <div class="forgot-password">
+      <button mat-button (click)="toggleResetPassword()">Forgot Password?</button>
+    </div>
+    <button mat-raised-button type="submit" color="primary">Login</button>
+    <div class="signup-link">
+      <a href="/signup">Don't have an account? Signup</a>
+    </div>
+  </form>
+</div>
 
-  <div class="signup-link">
-    <a href="/signup">Don't have an account? Signup</a>
-  </div>
-</form>
+<div *ngIf="resetPasswordMode">
+  <form (ngSubmit)="resetPassword()" class="login-form">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="resetEmail" placeholder="Enter Email" name="resetEmail" [required]="true">
+      <mat-label *ngIf="updatedPassword" style="font-size: 20px;font: bold; color: red;">Password will be sent to your email</mat-label>
+    <button mat-raised-button type="submit" color="primary">Reset Password</button>
+    <button mat-button (click)="toggleResetPassword()">Back to Login</button>
+  </form>
+</div>
