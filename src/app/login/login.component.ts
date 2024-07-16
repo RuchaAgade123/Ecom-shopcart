@@ -1,10 +1,4 @@
-// Displays a login form with email and password fields.
-// Calls AuthService's login() method on form submission to authenticate the user.
-// Navigates to the product listing page (/products) upon successful login.
-
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +6,29 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  email!: string;
-  password!: string;
-
-  constructor(private authService: AuthService, private router: Router) { }
-
+  email: string = '';
+  password: string = '';
 
   login() {
-    this.authService.login(this.email, this.password).subscribe(() => {
-      this.router.navigate(['/products']);
+    fetch('https://fakestoreapi.com/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.email, // Assuming the API expects email as username
+        password: this.password
+      })
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+      // Handle the response as needed
+      // For example, you could store the token and redirect the user
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle the error as needed
     });
   }
-
 }

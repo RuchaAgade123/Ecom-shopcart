@@ -9,11 +9,13 @@ import { CartComponent } from './cart/cart.component';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -26,11 +28,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatListModule,
     MatCardModule,
     MatIconModule, 
 	  MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
+    MatToolbarModule,
     HttpClientModule
   ],
   providers: [],

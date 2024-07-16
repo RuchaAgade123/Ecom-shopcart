@@ -8,26 +8,24 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cartItems!: any[];
+  cartItems: any[] = [];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cartService.getCartItems().subscribe(items => {
       this.cartItems = items;
+      console.log(items);
     });
   }
 
   updateQuantity(cartItemId: number, quantity: number) {
-    this.cartService.updateCartItem(cartItemId, quantity).subscribe(() => {
-      // Update cart items or handle response
-    });
+    if (quantity > 0) {
+      this.cartService.updateCartItem(cartItemId, quantity);
+    }
   }
 
   removeItem(cartItemId: number) {
-    this.cartService.removeCartItem(cartItemId).subscribe(() => {
-      // Remove item from cartItems array or handle response
-    });
+    this.cartService.removeCartItem(cartItemId);
   }
-
 }

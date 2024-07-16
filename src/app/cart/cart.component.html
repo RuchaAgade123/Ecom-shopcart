@@ -1,24 +1,41 @@
-<!-- cart.component.html -->
-<div class="container">
-    <div class ="cart-items" *ngIf="cartItems.length!=0">
-      <div *ngFor="let item of cartItems" class="cart-item">
-        <p>{{ item.product.title }}</p>
+<div class="container" [hidden]="cartItems.length === 0">
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.product.image" alt="{{ item.product.title }}">
+      <div class="cart-item-details">
+        <p class="cart-item-title">{{ item.product.title }}</p>
+        <p class="cart-item-price">Price: ${{ item.product.price }}</p>
         <p>Quantity: {{ item.quantity }}</p>
-        <button mat-icon-button (click)="updateQuantity(item.id, item.quantity + 1)">
+      </div>
+      <div class="cart-item-actions">
+        <button mat-icon-button (click)="updateQuantity(item.product.id, item.quantity + 1)">
           <mat-icon>add</mat-icon>
         </button>
-        <button mat-icon-button (click)="updateQuantity(item.id, item.quantity - 1)">
+        <button mat-icon-button (click)="updateQuantity(item.product.id, item.quantity - 1)">
           <mat-icon>remove</mat-icon>
         </button>
-        <button mat-icon-button (click)="removeItem(item.id)">
+        <button mat-icon-button (click)="removeItem(item.product.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
     </div>
-  
-    <div class="order-summary">
-      <!-- Order summary details -->
-      <button mat-button color="primary">Proceed to Payment</button>
-    </div>
   </div>
-  
+
+  <div class="order-summary">
+    <!-- Order summary details -->
+    <button mat-button color="primary">Proceed to Payment</button>
+  </div>
+</div>
+<div class="container" [hidden]="cartItems.length !== 0">
+  <div class="card">
+    <h5 class="card-title">My Cart</h5>
+  </div>
+  <div class="center">
+    <img
+      src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+      alt="">
+    <h4>Your cart is empty!</h4>
+    <h6>Add item to it now</h6>
+    <button routerLink="/products" class="btn btn-primary">Shop Now</button>
+  </div>
+</div>

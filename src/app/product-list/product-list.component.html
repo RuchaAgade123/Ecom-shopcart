@@ -1,29 +1,38 @@
-<!-- product-list.component.html -->
 <div class="container">
-    <div class="category-list">
-      <mat-list>
-        <mat-list-item (click)="filterByCategory('all')">All</mat-list-item>
-        <mat-list-item *ngFor="let category of categories" (click)="filterByCategory(category)">
-          {{ category }}
-        </mat-list-item>
-      </mat-list>
-    </div>
-    
-    <div class="product-list">
-      <div *ngFor="let product of products" class="product-card">
-        <mat-card>
-          <mat-card-header>
-            <!-- <mat-card-title>{{ product.title }}</mat-card-title> -->
-            <a >
-              <img src= "{{ product.image }}" alt="">
-              <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 50ch;">{{product.title}}</h5>
-            </a>
-          </mat-card-header>
-          <mat-card-actions>
-            <button mat-button color="primary" (click)="addToCart(product.id)">Add to Cart</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div>
+  <div class="category-list">
+    <mat-list>
+      <mat-list-item (click)="filterByCategory('all')">All</mat-list-item>
+      <mat-list-item *ngFor="let category of categories" (click)="filterByCategory(category)">
+        {{ category }}
+      </mat-list-item>
+    </mat-list>
   </div>
   
+  <div class="product-list">
+    <div *ngFor="let product of products" class="product-card">
+      <mat-card>
+        <mat-card-header>
+          <img mat-card-avatar src="{{ product.image }}" alt="{{ product.title }}">
+        </mat-card-header>
+        <mat-card-content>
+          <h5>{{ product.title }}</h5>
+          <p class="product-price">Price: ${{ product.price }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <ng-container *ngIf="cartQuantities[product.id]">
+            <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] + 1)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <span>{{ cartQuantities[product.id] }}</span>
+            <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] - 1)">
+              <mat-icon>remove</mat-icon>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="!cartQuantities[product.id]">
+            <button mat-button color="primary" (click)="addToCart(product)">Add to Cart</button>
+          </ng-container>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,17 @@
-<!-- login.component.html -->
-<form (ngSubmit)="login()">
-    <input matInput type="email" [(ngModel)]="email" name="email" [required]="true">
-    <input matInput type="password" [(ngModel)]="password" name="password" [required]="true">
-    <button mat-raised-button type="submit" color="primary">Login</button>
-  </form>
+<form (ngSubmit)="login()" class="login-form">
+  <mat-label>Email</mat-label>
+  <input matInput type="email" [(ngModel)]="email" name="email" [required]="true">
   
-  
+  <mat-label>Password</mat-label>
+  <input matInput type="password" [(ngModel)]="password" name="password" [required]="true">
+
+  <div class="forgot-password">
+    <a href="/forgot-password">Forgot password?</a>
+  </div>
+
+  <button mat-raised-button type="submit" color="primary">Login</button>
+
+  <div class="signup-link">
+    <a href="/signup">Don't have an account? Signup</a>
+  </div>
+</form>

@@ -1,43 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.category-list {
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mat-list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.mat-list-item {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
 .product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.product-item {
-    border: 1px solid #ccc;
-    padding: 20px;
-    background-color: #f9f9f9;
+.product-card {
+  margin: 10px;
+  width: 250px;
 }
 
-.product-title {
-    font-weight: bold;
-    margin-bottom: 10px;
+.mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px; /* Adjusted height for a larger square */
+  overflow: hidden; /* Ensure the image doesn't overflow */
+  position: relative; /* Required for the absolute positioning of the image */
+}
+
+.mat-card-header img {
+  width: 50%; /* Fill the header width */
+  height: 50%; /* Fill the header height */
+  object-fit: cover; /* Ensure the image covers the container */
+  border-radius: 0; /* Square shape */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom */
+  position: absolute; /* Absolute positioning */
+  top: 50%; /* Center the image vertically */
+  left: 50%; /* Center the image horizontally */
+  transform: translate(-50%, -50%); /* Center the image */
+}
+
+.mat-card-header img:hover {
+  transform: translate(-50%, -50%) scale(1.5); /* Zoom image on hover */
+}
+
+.mat-card-content {
+  text-align: center;
 }
 
 .product-price {
-    color: #1976d2;
-
-    .add-to-cart-btn {
-        width: 100%;
-    }
+  margin-top: 10px;
+  font-weight: bold;
 }
 
-img {
-    width: 64px;
-}
-
-.mat-card-header h5 {
-    max-width: 0cx;
-    border:1cm black;
-    margin: 0px 15px;
-    text-align: left;
-    width: 150px;
-    border: 1px solid #000;
-    word-wrap: normal; /* or use overflow-wrap */
-}
-
-.mat-card-action button{
-    padding-left: 80px;
-    padding-right: 80px;
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
 }
