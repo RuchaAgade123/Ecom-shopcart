@@ -1,41 +1,23 @@
-.menu {
-  position: fixed;
-  top: 100px;
-  left: 220px;
-  width: 90%;
-  display: flex;
-  justify-content: space-around;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-  z-index: 1000;
-
-  button {
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-}
-
 .container {
   display: flex;
-  margin: 20px;
+  margin: 30px;
 }
 
 .category-sidebar {
-  width: 200px; /* Fixed width */
-  position: fixed; /* Fixed position */
-  top: 100px; /* Distance from the top */
-  left: 0px; /* Distance from the left */
-  border-right: 1px solid #ccc; /* Border to separate sidebar from content */
-  padding-right: 10px; /* Padding for better spacing */
-  height: calc(100vh - 40px); /* Calculate height to fit viewport minus margin */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  width: 200px; 
+  position: absolute;
+  top: 71px; 
+  left: 0px; 
+  border-right: 1px solid #ccc; 
+  border-block-end: 1px solid #ccc;
+  padding-right: 10px; 
+  height: calc(100vh - 40px); 
+  overflow-y: auto; 
 }
 
 .category-content {
   flex-grow: 1;
-  margin-left: 240px; /* Adjust margin to create space for sidebar */
+  margin-left: 240px;
 }
 
 .category-list {
@@ -52,16 +34,15 @@
 
 .mat-list-item {
   cursor: pointer;
-  margin: 10px 0; /* Adjust margin for spacing between categories */
-  border-bottom: 1px solid #ccc; /* Horizontal lines between categories */
-  padding-bottom: 10px; /* Space below each category */
+  margin: 10px 0; 
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px; 
 }
 
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Adjust alignment as needed */
-  margin-top: 20px; /* Ensure space between category list and products */
+  justify-content: flex-start;
 }
 
 .product-card {
@@ -194,7 +175,7 @@ button.mat-icon-button {
       background-color: #e0e0e0;
       padding: 5px 10px;
       border-radius: 3px;
-      margin: 0 5px 5px 0; /* Adds space between the selected categories */
+      margin: 0 5px 5px 0;
     }
   }
 }

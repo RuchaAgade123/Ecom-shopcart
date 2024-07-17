@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
       }, {});
     });
   }
-
+  
   filterBySelectedCategories() {
     if (this.selectedCategories.length === 0) {
       this.filteredProducts = this.products;
@@ -67,9 +67,4 @@ export class ProductListComponent implements OnInit {
       }, {});
     });
   }
-
-  navigateTo(page: string) {
-    this.router.navigate([`/${page}`]);
-  }
-  
 }

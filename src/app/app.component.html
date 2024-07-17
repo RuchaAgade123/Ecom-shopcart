@@ -1,8 +1,12 @@
 <mat-toolbar color="primary" class="header">
   <span class="app">{{ title }}</span>
   <span class="spacer"></span>
-  <button mat-button *ngIf="isLoggedIn()" routerLink="/products">Products</button>
-  <button mat-button *ngIf="isLoggedIn()" routerLink="/cart">Cart</button>
+  <div class="search-bar" *ngIf="isLoggedIn()" > 
+</div>
+<button mat-button *ngIf="isLoggedIn()" routerLink="/products">Products</button>
+<button mat-button *ngIf="isLoggedIn()" routerLink="/cart">Cart</button>
+  <button mat-button *ngIf="isLoggedIn()" routerLink="/about">About</button>
+  <button mat-button *ngIf="isLoggedIn()" routerLink="/contact-us">Contact Us</button>
   <button mat-button *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
 </mat-toolbar>
 

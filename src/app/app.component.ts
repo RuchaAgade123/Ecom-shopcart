@@ -20,4 +20,4 @@ export class AppComponent {
     this.router.navigate(['/login']);
     // Optionally, navigate to the login page
   }
-}
+  }

@@ -6,9 +6,8 @@
 .header {
   display: flex;
   align-items: center;
-  margin : 30px;
   justify-content: space-between;
-  padding: 10px 20px; 
+  padding: 10px 10px; 
   background-color: #f0f0f0;
   border-bottom: 1px solid #ccc;
 
@@ -23,6 +22,34 @@
   }
 
   button {
-    margin-right: 30px; 
+    margin-right: 12px; 
   }
 }
+
+.menu {
+  position: initial;
+  top: 100px;
+  left: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  z-index: 1000;
+
+  button {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.mat-icon-button {
+  border-radius: 0%;
+  margin-right: 5px;
+}
+button .mat-icon{
+  width: 1px;
+}
+

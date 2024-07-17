@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { SignupComponent } from './signup/signup.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { AboutComponent } from './about/about.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MatMenuModule } from '@angular/material/menu';
     LoginComponent,
     ProductListComponent,
     CartComponent,
-    SignupComponent
+    SignupComponent,
+    AboutComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
