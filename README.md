@@ -31,9 +31,12 @@ OS: win32 x64
 
 execute
 
+npm i
+
 ng add @angular/cdk
 
 ng add @angular/material
+
 
 ## Build
 
