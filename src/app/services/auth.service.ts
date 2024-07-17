@@ -7,27 +7,24 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 
+export interface LoginResponse{
+  token: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'https://fakestoreapi.com/auth/login';
+  private apiUrl = 'https://fakestoreapi.com';
 
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string) {
-    return this.http.post<any>(this.apiUrl, { email, password }).pipe(
-      tap(response => {
-        localStorage.setItem('token', response.token);
-      })
-    );
+  login(username: string, password: string) {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login`, { username, password });
   }
-
   resetPassword(email: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/reset-password`, { email });
   }
@@ -42,6 +39,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    
   }
 
   isLoggedIn() {

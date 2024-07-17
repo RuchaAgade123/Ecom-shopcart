@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service'; // Adjust the path as necessary
+import { AuthService } from '../services/auth.service'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,16 +16,16 @@ export class SignupComponent {
 
   signup() {
     if (this.username && this.email && this.password) {
-    //   this.authService.signup(this.username, this.email, this.password).subscribe({
-    //     next: (response) => {
-    //       console.log('Signup successful', response);
-    //       this.router.navigate(['/login']);
-    //     },
-    //     error: (error) => {
-    //       this.router.navigate(['/login']);
-    //     }
-    //   });
-    // } else {
+       this.authService.signup(this.username, this.email, this.password).subscribe({
+         next: (response) => {
+           console.log('Signup successful', response);
+           this.router.navigate(['/login']);
+         },
+         error: (error) => {
+           this.router.navigate(['/login']);
+         }
+       });
+     } else {
       this.router.navigate(['/login']);
     }
   }

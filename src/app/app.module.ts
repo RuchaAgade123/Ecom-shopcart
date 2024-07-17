@@ -16,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatButtonModule } from '@angular/material/button';
 import { SignupComponent } from './signup/signup.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { SignupComponent } from './signup/signup.component';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule, 
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

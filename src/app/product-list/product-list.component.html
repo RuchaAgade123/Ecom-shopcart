@@ -1,40 +1,56 @@
+<div class="menu">
+  <button mat-button (click)="navigateTo('home')">Home</button>
+  <button mat-button (click)="navigateTo('about')">About Us</button>
+  <button mat-button (click)="navigateTo('contact')">Contact Us</button>
+</div>
 <div class="container">
-  <div class="category-list">
-    <mat-list>
-      <mat-list-item (click)="filterByCategory('all')">All</mat-list-item>
-      <mat-list-item *ngFor="let category of categories" (click)="filterByCategory(category)">
+  <div class="category-sidebar">
+    <h3>Categories</h3>
+    <mat-selection-list [(ngModel)]="selectedCategories" (selectionChange)="filterBySelectedCategories()">
+      <mat-list-option *ngFor="let category of categories" [value]="category">
         {{ category }}
-      </mat-list-item>
-    </mat-list>
+      </mat-list-option>
+    </mat-selection-list>
   </div>
   
-  <div class="product-list">
-    <div *ngFor="let product of products" class="product-card">
-      <mat-card>
-        <mat-card-header>
-          <img mat-card-avatar src="{{ product.image }}" alt="{{ product.title }}">
-        </mat-card-header>
-        <mat-card-content>
-          <h5>{{ product.title }}</h5>
-          <p class="product-price">Price: ${{ product.price }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <ng-container *ngIf="cartQuantities[product.id]; else inStock">
-            <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] + 1)">
-              <span class="action-symbol">+</span>
-            </button>
-            <span>{{ cartQuantities[product.id] }}</span>
-            <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] - 1)">
-              <span class="action-symbol">-</span>
-            </button>
-          </ng-container>
-          <ng-template #inStock>
-            <button mat-button color="primary" (click)="addToCart(product)" class="in-stock-button">
-              In Stock
-            </button>
-          </ng-template>
-        </mat-card-actions>
-      </mat-card>
+  <div class="category-content">
+    <div class="filter-selected-categories" *ngIf="selectedCategories.length > 0">
+      <h3>Selected Categories:</h3>
+      <div class="selected-categories-list">
+        <span *ngFor="let category of selectedCategories">{{ category }}</span>
+      </div>
+    </div>
+    
+    <div class="product-list">
+      <div *ngFor="let product of filteredProducts" class="product-card">
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="{{ product.image }}" alt="{{ product.title }}">
+          </mat-card-header>
+          <mat-card-content>
+            <h5>
+              <span class="product-title" title="{{ product.title }}">{{ product.title }}</span>
+            </h5>
+            <p class="product-price">Price: ${{ product.price }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <ng-container *ngIf="cartQuantities[product.id]; else inStock">
+              <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] + 1)">
+                <span class="action-symbol">+</span>
+              </button>
+              <span>{{ cartQuantities[product.id] }}</span>
+              <button mat-icon-button (click)="updateQuantity(product, cartQuantities[product.id] - 1)">
+                <span class="action-symbol">-</span>
+              </button>
+            </ng-container>
+            <ng-template #inStock>
+              <button mat-button color="primary" (click)="addToCart(product)" class="in-stock-button">
+                Add to Cart
+              </button>
+            </ng-template>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>

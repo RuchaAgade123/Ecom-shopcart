@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CartComponent } from './cart/cart.component';
 import { SignupComponent } from './signup/signup.component';
+import { MatSelectModule } from '@angular/material/select'; // Import MatSelectModule
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,7 +15,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    MatSelectModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

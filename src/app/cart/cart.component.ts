@@ -22,6 +22,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // Update cart items and its count or handle response
   updateQuantity(cartItemId: number, quantity: number) {
     if (quantity > 0) {
       this.cartService.updateCartItem(cartItemId, quantity).subscribe(() => {
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // Remove item from cartItems array or handle response
   removeItem(cartItemId: number) {
     this.cartService.removeCartItem(cartItemId).subscribe(() => {
       this.cartItems = this.cartItems.filter(item => item.product.id !== cartItemId);
@@ -37,6 +39,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // Calculate the total products price to proceed payment
   private calculateTotals() {
     this.subtotal = this.cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
     this.total = this.subtotal + this.tax;

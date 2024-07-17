@@ -1,8 +1,41 @@
+.menu {
+  position: fixed;
+  top: 100px;
+  left: 220px;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  z-index: 1000;
+
+  button {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 20px;
+}
+
+.category-sidebar {
+  width: 200px; /* Fixed width */
+  position: fixed; /* Fixed position */
+  top: 100px; /* Distance from the top */
+  left: 0px; /* Distance from the left */
+  border-right: 1px solid #ccc; /* Border to separate sidebar from content */
+  padding-right: 10px; /* Padding for better spacing */
+  height: calc(100vh - 40px); /* Calculate height to fit viewport minus margin */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+}
+
+.category-content {
+  flex-grow: 1;
+  margin-left: 240px; /* Adjust margin to create space for sidebar */
 }
 
 .category-list {
@@ -19,13 +52,16 @@
 
 .mat-list-item {
   cursor: pointer;
-  margin: 0 10px;
+  margin: 10px 0; /* Adjust margin for spacing between categories */
+  border-bottom: 1px solid #ccc; /* Horizontal lines between categories */
+  padding-bottom: 10px; /* Space below each category */
 }
 
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start; /* Adjust alignment as needed */
+  margin-top: 20px; /* Ensure space between category list and products */
 }
 
 .product-card {
@@ -37,29 +73,56 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px; /* Adjusted height for a larger square */
-  overflow: hidden; /* Ensure the image doesn't overflow */
-  position: relative; /* Required for the absolute positioning of the image */
+  height: 250px; 
+  overflow: hidden; 
+  position: relative; 
 }
 
 .mat-card-header img {
-  width: 50%; /* Fill the header width */
-  height: 50%; /* Fill the header height */
-  object-fit: contain; /* Ensure the image covers the container */
-  border-radius: 0; /* Square shape */
-  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom */
-  position: absolute; /* Absolute positioning */
-  top: 50%; /* Center the image vertically */
-  left: 50%; /* Center the image horizontally */
-  transform: translate(-50%, -50%); /* Center the image */
+  width: 50%; 
+  height: 50%; 
+  object-fit: contain; 
+  border-radius: 0; 
+  transition: transform 0.3s ease-in-out; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
 }
 
 .mat-card-header img:hover {
-  transform: translate(-50%, -50%) scale(2); /* Zoom image on hover */
+  transform: translate(-50%, -50%) scale(2); 
 }
 
 .mat-card-content {
   text-align: center;
+}
+
+.product-title {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-title:hover::before {
+  content: attr(title);
+  position: absolute;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 10;
 }
 
 .product-price {
@@ -69,7 +132,7 @@
 
 .product-stock {
   margin-top: 10px;
-  color: #4caf50; /* Green color for "In Stock" */
+  color: #4caf50; 
   font-weight: bold;
 }
 
@@ -77,37 +140,61 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row; /* Ensure elements are in a row */
-  gap: 10px; /* Add space between elements */
+  flex-direction: row; 
+  gap: 10px; 
 }
 
 .action-symbol {
-  font-size: 24px; /* Larger font size for symbols */
+  font-size: 24px; 
   font-weight: bold;
-  color: #1976d2; /* Color for the symbols */
-  line-height: 0; /* Remove extra line spacing */
+  color: #1976d2; 
+  line-height: 0; 
 }
 
 button.mat-icon-button {
-  margin: 0 5px; /* Add some space around the buttons */
+  margin: 0 5px; 
 }
 
-/* Styling for the "In Stock" button */
+/* Styling for the "Add to Cart" button */
 .in-stock-button {
-  border-radius: 50%; /* Circle shape */
-  padding: 10px 20px; /* Adjust padding */
-  background-color: #4caf50; /* Green background */
-  color: white; /* White text */
-  font-weight: bold; /* Bold text */
-  text-transform: uppercase; /* Uppercase text */
-  font-size: 14px; /* Font size */
-  min-width: 100px; /* Minimum width for consistency */
-  height: 40px; /* Height to make it circular */
-  display: flex; /* Center text vertically */
-  align-items: center; /* Center text vertically */
-  justify-content: center; /* Center text horizontally */
+  padding: 10px 20px; 
+  background-color: #4caf50; 
+  color: white; 
+  font-weight: bold; 
+  text-transform: uppercase; 
+  font-size: 14px; 
+  min-width: 100px; 
+  height: 40px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .in-stock-button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #45a049; 
+}
+
+.filter-selected-categories {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  h3 {
+    margin: 0 0 10px;
+  }
+
+  .selected-categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    span {
+      background-color: #e0e0e0;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin: 0 5px 5px 0; /* Adds space between the selected categories */
+    }
+  }
 }
