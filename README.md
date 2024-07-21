@@ -42,8 +42,6 @@ ng add @angular/material
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-![Screenshot 2024-06-12 211307](https://github.com/user-attachments/assets/eaf3a024-a7c4-4de4-8d23-544ef8ecffa3)
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
