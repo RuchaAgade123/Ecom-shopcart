@@ -11,8 +11,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductService {
 
-
-
   private apiUrl = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) { }

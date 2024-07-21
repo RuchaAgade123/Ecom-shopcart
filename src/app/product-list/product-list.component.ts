@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,13 +19,21 @@ export class ProductListComponent implements OnInit {
 
   cartQuantities: { [productId: number]: number } = {};
 
-  constructor(private productService: ProductService, private cartService: CartService, private router: Router) { }
+  private subscriptions: Subscription[] = [];
+
+  constructor(private productService: ProductService, private cartService: CartService, private router: Router, private searchService: SearchService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
       this.filteredProducts = products;
     });
+    this.subscriptions.push(
+      this.searchService.filteredProducts$.subscribe(products => {
+        this.products = products;
+        this.filteredProducts = products;
+      })
+    );
 
     this.productService.getCategories().subscribe(categories => {
       this.categories = categories;
@@ -66,5 +76,9 @@ export class ProductListComponent implements OnInit {
         return acc;
       }, {});
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
