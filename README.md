@@ -56,7 +56,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 ## Filter page
 ![Screenshot 2024-07-22 020758](https://github.com/user-attachments/assets/befc1eed-5df6-48be-a117-11bc2d1795cf)
 
-##Item selection
+## Item selection
 ![Screenshot 2024-07-22 020822](https://github.com/user-attachments/assets/3b1881f4-1f73-41a7-979d-fd7c8319a541)
 
 ## Cart Page
